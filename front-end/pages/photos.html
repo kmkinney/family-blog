@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinney Family Blog</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Kinney Family Photos</h1>
+    </div>
+    <div class="links"><a href="../index.html">Home</a></div>
+    <div id="pictures"></div>
+    <script>
+        const pictures = document.getElementById('pictures');
+        for(let i=1; i<=10; i++){
+            let img = document.createElement('img');
+            img.src = `../assets/${i}.JPG`;
+            pictures.appendChild(img);
+        }
+    </script>
+</body>
+</html>
