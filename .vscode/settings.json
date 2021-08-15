@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "159.65.98.126",
+            "port": 3306,
+            "askForPassword": true,
+            "driver": "MySQL",
+            "name": "Family Blog",
+            "database": "kmkinney_family_blog",
+            "username": "kmkinney_mysql"
+        }
+    ]
+}

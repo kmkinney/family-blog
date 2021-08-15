@@ -13,3 +13,12 @@ postButton.onclick = () => {
     editor.value = '';
     // document.getElementById('post').innerText += postText;
 }
+
+const api = 'http://localhost:3000/blog'
+
+//Get posts from api
+var httpRequest = new XMLHttpRequest();
+httpRequest.open('GET', api, false);
+httpRequest.send(null);
+
+console.log(JSON.parse(httpRequest.responseText))
