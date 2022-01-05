@@ -1,5 +1,10 @@
 const db = require('../db/db')
-
+/**
+ * Callback function for db queries
+ * @callback resultCallback
+ * @param {Object} error error object
+ * @param {Object} data result of query
+ */
 module.exports = {
     /**
      * Get all blog posts from the database
@@ -15,10 +20,58 @@ module.exports = {
     },
 
     /**
+     * Gets the post that have the specified id
+     * 
+     * @param {int} postId the id of the post to get from the database
+     * @param {resultCallback} result cb function to handle error and data
+     */
+    getId: function(postId, result){
+        db.query('SELECT * FROM blog_posts WHERE id = ?', postId, (err, data) => {
+            if(err){
+                result(err, null)
+                return
+            }
+            result(null, data)
+        })
+    },
+
+    /**
+     * Gets all posts created by the user with the given id
+     * 
+     * @param {int} userId the id of the user whose posts will be retrieved from the database
+     * @param {resultCallback} result cb function to handle error and data
+     */
+    getUserId: function(userId, result){
+        db.query('SELECT * FROM blog_posts WHERE user_id = ?', userId, (err, data) => {
+            if(err){
+                result(err, null)
+                return
+            }
+            result(null, data)
+        })
+    },
+
+    /**
+     * Gets all posts created on specified date
+     * 
+     * @param {YYYY-MM-DD} postDate the date of the posts to retrieve from the database
+     * @param {resultCallback} result cb function to handle error and data
+     */
+    getDate: function(postDate, result){
+        db.query('SELECT * FROM blog_posts WHERE publish_date = ?', postDate, (err, data) => {
+            if(err){
+                result(err, null)
+                return
+            }
+            result(null, data)
+        })
+    },
+
+    /**
      * Creates a new post in the database
      * 
      * @param {Object} newPost must have attributes: {
-     *  user : string,
+     *  user_id : int,
      *  publish_date: date string,
      *  post: string
      * }
@@ -31,10 +84,4 @@ module.exports = {
             result(null, {id: data.insertId, ...newPost})
         })
     }
-    /**
-     * Callback function for db queries
-     * @callback resultCallback
-     * @param {Object} error error object
-     * @param {Object} data result of query
-     */
 }
